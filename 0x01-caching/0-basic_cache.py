@@ -4,6 +4,7 @@ from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
+    "Basic dictionary cache"
     def __init__(self) -> None:
         "init base class"
         super().__init__()
