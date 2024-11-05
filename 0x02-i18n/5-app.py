@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 "Basic Flask app"
+from typing import Dict, Optional
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
@@ -25,7 +26,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> Optional[str]:
     "get the locale to be used"
     locale_param = request.args.get('locale', None)
     if locale_param and locale_param in app.config['LANGUAGES']:
@@ -33,9 +34,9 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-def get_user():
+def get_user() -> Optional[Dict]:
     "get the user logged in"
-    user = request.args.get('login_as', None)
+    user: str | None = request.args.get('login_as', None)
     if user:
         return users.get(int(user), None)
 
