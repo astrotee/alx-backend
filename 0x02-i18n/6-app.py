@@ -32,8 +32,8 @@ def get_locale() -> Optional[str]:
     if locale_param and locale_param in app.config['LANGUAGES']:
         return locale_param
     user = getattr(g, 'user', None)
-    if user and user.locale:
-        return user.locale
+    if user and user['locale']:
+        return user['locale']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
